@@ -1,8 +1,16 @@
 #include <iostream>
-#include "./header/linked_list.h"
+#include "./header/vector.h"
 
 int main()
 {
-    std::cout << "init";
+    Vector<int> vec(10);
+    std::cout << vec.Find(1);
+
+    // //vec.Resize(10);
+    // std::cout << vec << vec.getSize();
+
+    // vec.Push(3.1);
+    // std::cout << vec << vec.getSize();
+
     return 0;
 }
