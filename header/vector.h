@@ -80,7 +80,7 @@ public:
     // func to change value located in ind position
     void chgValue(int ind, T input)
     {
-        if (size == 0)
+        if (size)
             throw("vector is empty");
         if (ind > size)
             throw("out of range");

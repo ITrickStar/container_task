@@ -5,8 +5,15 @@
 
 int main()
 {
-    BinTree tree(1);
-    std::cout << tree.Find(1);
+    BinTree tree(2);
+    BinTree A = tree;
+    std::cout << (tree == A) << " " << tree.getSize() << std::endl;
+
+    std::cout << tree.find(1) << std::endl;
+    tree.push(10);
+    tree.pop(10);
+    tree.print();
+
 
     // List<int> vec(5);
     // List<int> A = vec;
