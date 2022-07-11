@@ -6,28 +6,31 @@ template <class T>
 class Vector
 {
 private:
-    T *arr;       // an array of data
+    T* arr;       // an array of data
     int size;     // amount of non-zero values of vector
     int capacity; // actal size of vector
+    // func to fill the vector on default run
+    void vecFill()
+    {
+        for (int i = 0; i < size; i++)
+            arr[i] = rand();
+    }
 
 public:
     // default constructor
     Vector(int _size = 0) : arr(nullptr), size(_size), capacity(_size)
     {
         arr = new T[capacity];
-        for (int i = 0; i < size; i++)
-        {
-            arr[i] = rand();
-        }
+        vecFill();
     };
     // copy constructor
-    Vector(const Vector &cpy)
+    Vector(const Vector& cpy)
     {
         this->operator=(cpy);
     };
     ~Vector() { delete[] arr; };
 
-    Vector &operator=(const Vector &eq)
+    Vector& operator=(const Vector& eq)
     {
         this->size = eq.size;
         this->capacity = eq.capacity;
@@ -39,7 +42,7 @@ public:
         return *this;
     };
     // checks if every cells of same index are equal
-    bool operator==(const Vector &eq)
+    bool operator==(const Vector& eq)
     {
         if (this->size != eq.size)
             return false;
@@ -50,7 +53,7 @@ public:
 
         return true;
     };
-    T &operator[](int ind)
+    T& operator[](int ind)
     {
         if (ind < size && ind >= 0)
             return arr[ind];
@@ -59,12 +62,12 @@ public:
 
     int getSize() { return size; };
     // utility function to allocate extra space in a vector
-    void Resize(int newcap)
+    void resize(int newcap)
     {
         if (newcap < 0)
             throw("wrong capacity");
 
-        T *temp = new T[capacity];
+        T* temp = new T[capacity];
         memcpy(temp, arr, capacity * sizeof(T));
         arr = new T[newcap];
         memcpy(arr, temp, ((newcap < capacity) ? newcap : capacity) * sizeof(T));
@@ -86,22 +89,22 @@ public:
     };
     // pushes value in the end of an array
     // if it lacks of space Resize() function called
-    void Push(T input)
+    void push(T input)
     {
         if (size == capacity)
-            Resize(capacity + 10);
+            resize(capacity + 10);
         arr[size++] = input;
     };
     // erases value in the end of an array
     // actually there is no deletion only size variable decreased by 1
-    void Pop()
+    void pop()
     {
         if (size != 0)
             size--;
         else
             throw("vector is empty");
     };
-    int Find(T val)
+    int find(T val)
     {
         for (int i = 0; i < size; i++)
         {
@@ -112,13 +115,13 @@ public:
     };
 
     template <class U>
-    friend std::ostream &operator<<(std::ostream &strm, const Vector<U> &vec);
+    friend std::ostream& operator<<(std::ostream& strm, const Vector<U>& vec);
 };
 
 // output of a vector's content
 // [1, 2, 3]
 template <class U>
-std::ostream &operator<<(std::ostream &strm, const Vector<U> &vec)
+std::ostream& operator<<(std::ostream& strm, const Vector<U>& vec)
 {
     strm << '[';
     for (int i = 0; i < vec.size - 1; i++)

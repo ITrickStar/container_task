@@ -33,7 +33,7 @@ public:
 		}
 	};
 	// copy constructor
-	List(const List &cpy)
+	List(const List& cpy)
 	{
 		head = new Node<T>;
 		size = 1;
@@ -51,7 +51,7 @@ public:
 
 	// copies the contents of the eq list
 	// maybe it should only assign head of this list to another but idk
-	List &operator=(const List &eq)
+	List& operator=(const List& eq)
 	{
 		this->Resize(eq.size);
 		Node<T> *tempA = this->head;
@@ -65,7 +65,7 @@ public:
 		return *this;
 	};
 	// checks if all the values of nodes are equal between each other
-	bool operator==(const List &eq)
+	bool operator==(const List& eq)
 	{
 		if (this->size != eq.size)
 			return false;
@@ -99,7 +99,7 @@ public:
 	int getSize() { return size; };
 	// utility function to resize list
 	// if it is used to extend list adds empty nodes
-	void Resize(int newcap)
+	void resize(int newcap)
 	{
 		if (size > newcap)
 			for (size; size > newcap; size--)
@@ -157,7 +157,7 @@ public:
 			throw("List is empty");
 	};
 	// returns pointer to node
-	Node<T> *Find(T val)
+	Node<T> *find(T val)
 	{
 		Node<T> *temp = head;
 		for (int i = 0; i < size; i++)
@@ -170,12 +170,12 @@ public:
 	};
 
 	template <class U>
-	friend std::ostream &operator<<(std::ostream &strm, const List<U> &list);
+	friend std::ostream& operator<<(std::ostream& strm, const List<U>& list);
 };
 
 // output is the values of nodes
 template <class U>
-std::ostream &operator<<(std::ostream &strm, const List<U> &list)
+std::ostream& operator<<(std::ostream& strm, const List<U>& list)
 {
 	strm << '[';
 	Node<U> *temp = list.head;
